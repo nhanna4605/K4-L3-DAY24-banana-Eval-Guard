@@ -85,6 +85,13 @@ p_e = 0.6 × 0.6 + 0.4 × 0.4 = 0.52; κ = (1.0 − 0.52) / (1 − 0.52) = 1.0 (
 - Bộ 10 câu calibration đều có reference rõ, nhiều câu là lỗi dễ thấy (sai phiên bản, sai người duyệt, đảo phủ
   định). Câu trả lời đúng một phần (id 29: đúng người duyệt cấp 1 nhưng thiếu Kế toán trưởng) cũng được judge
   chấm 0 trùng human, nhưng chưa có đủ ca mơ hồ để đo độ ổn định.
+- Bổ sung 2026-10-12 (đọc lại, không chạy lại judge): nhãn trùng human nhưng reasoning của judge không phải lúc nào
+  cũng bám đúng answer. Ở id 12 (calibration) judge ghi answer "đầy đủ ý ... cho nhân viên chính thức từ 6 tháng trở
+  lên", trong khi `model_answer` "Nhân viên được thưởng Tết tối thiểu 1 tháng lương." không nêu điều kiện 6 tháng; ở
+  lượt pairwise của cùng answer này (B), judge lại trừ điểm vì thiếu đúng điều kiện đó (B 0.6/0.8) còn human gắn nhãn
+  1 ("Đúng và súc tích"). Id 46 tương tự: reasoning nhắc "điều kiện phê duyệt" mà answer không nêu. Vì vậy trong id 12
+  chiến thắng của A (dài hơn) dựa trên chênh lệch độ đầy đủ mà human không coi là lỗi, nên đây là cặp mỏng nhất trong
+  4 winner dài hơn. κ = 1.0 chỉ so khớp nhãn, không chứng minh lập luận của judge đúng.
 - Cách dùng: judge là tín hiệu sàng lọc có reference, không phải đáp án tuyệt đối. Luôn chạy swap-and-average,
   lưu reasoning, lấy mẫu định kỳ các ca judge và human có thể bất đồng để người đọc lại, và tính lại κ khi đổi
   model hoặc prompt judge.

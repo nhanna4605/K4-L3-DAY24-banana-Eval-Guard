@@ -89,12 +89,35 @@ gpt-4.1-mini), không chỉ dựa trên unit test.
 
 ### LeDucHung-2A202602849
 
-- Phần được giao và phần thực tế đã làm: được giao kiểm chứng Phase A/B (xem `doc/PHAN_CONG.md`, mục Lê Đức Hùng); trạng thái: đang thực hiện.
-- Bằng chứng: thành viên tự điền sau khi làm (commit SHA, file trong `artifacts/extra/`, đoạn báo cáo đã sửa).
-- Cách kiểm tra: thành viên tự điền (lệnh đã chạy và kết quả thật).
-- Điều đã học: thành viên tự điền.
-- Giới hạn/cách xử lý: thành viên tự điền.
-- Nguồn/AI hỗ trợ nếu có: thành viên tự điền.
+- Phần được giao và phần thực tế đã làm: được giao kiểm chứng Phase A/B (`doc/PHAN_CONG.md`, mục Lê Đức Hùng). Đã làm:
+  (1) chạy `check_lab.py --with-tests` trong Docker (image `lab24` tự build); (2) đọc lại cả 10 câu bottom-10 (answer, 3
+  contexts, ground truth, 4 metric) và đối chiếu từng ô của bảng với `bottom_10` trong artifact; (3) đọc lại 5 cặp pairwise
+  và 10 nhãn nhị phân của Phase B, tính lại κ; (4) sửa báo cáo: ba chẩn đoán trong `failure_clusters.md` (id 28, 34, 39) và
+  thêm một ghi chú vào `bias_report.md`. **Chưa làm được:** hai lần RAGAS live, vì máy của tôi không có khóa API/`.env`.
+  Vì vậy tôi chưa đo được dao động RAGAS; chỉ tính lại mean của baseline (factual 0.8791, multi_hop 0.6867, adversarial 0.8272).
+- Bằng chứng: `artifacts/extra/phase_ab_verification_hung.md` (báo cáo tổng hợp), `check_lab_with_tests_hung.log` và
+  `check_lab_with_tests_hung_lf.log`, `ragas_live_attempt_blocked_hung.log`; mục "Kiểm chứng bổ sung 2026-10-12" cuối
+  `doc/reports/failure_clusters.md`, các đoạn đã đánh dấu "đã sửa 2026-10-12" cùng đoạn bổ sung cuối danh sách giới hạn của
+  `doc/reports/bias_report.md`. SHA của commit nằm trong lịch sử git của repo (không ghi vào file để tránh vòng lặp).
+- Cách kiểm tra: `docker build -f infra/lab.Dockerfile -t lab24 .` (exit 0); `docker run ... lab24 python scripts/check_lab.py
+  --with-tests` trên working tree Windows: exit 1, `86 passed`, nhưng 3 FAIL "Stale experiment source" ở Phase A/B/C artifact vì
+  `core.autocrlf=true` đổi file sang CRLF làm lệch SHA-256 so với metadata (blob git LF của `answers_50q.json` là `5ee7c22a...`
+  trùng metadata); chạy lại trên bản clone LF của cùng commit cộng các sửa tài liệu: exit 0, `86 passed`, `0 failed checks`. Thử
+  `python scripts/run_experiments.py --phase a --live` trong bản sao cô lập: exit 2, thiếu `OPENAI_API_KEY`, không gọi API. Các
+  phép tính lại (mean, κ, đối chiếu chuỗi nguồn A/B/reference) chạy bằng script Python đọc thẳng JSON. Bốn artifact chính được
+  băm SHA-256 trước và sau, không đổi.
+- Điều đã học: không tin điểm tổng hợp. Id 28 có answer đúng, đủ số liệu, nhưng context_precision 0.00 và faithfulness
+  0.33; chỉ đọc contexts mới thấy hai chunk cần thiết đã có, nên đó là nhiễu evaluator chứ không phải lỗi retrieval. Id 34 bị
+  gán nhầm cho generation vì luật chẩn đoán coi 15 là "giá trị suy ra" (20 triệu − 5 triệu), trong khi 15 ngày là chunk chưa được
+  retrieve. κ = 1.0 trên 10 nhãn chỉ chứng minh nhãn trùng: reasoning của judge ở id 12 gán cho answer một điều kiện (6 tháng)
+  mà answer không nêu. Mẫu 5 cặp quá nhỏ để kết luận verbosity bias.
+- Giới hạn/cách xử lý: không có khóa API nên thiếu hai lần chạy RAGAS và thiếu so sánh baseline với run 1–2; tôi ghi rõ chuyện
+  này, không điền số thay thế, và để lại bước chạy cho người có khóa. Kết luận "nhiễu evaluator" ở id 28/39 là suy luận từ mâu
+  thuẫn giữa các metric và lịch sử 5 lần chạy trong báo cáo, chưa được kiểm bằng chấm lại. Judge pairwise không lưu phản hồi thô
+  lượt 2 nên điểm sau khi đảo chỉ kiểm được qua reasoning và mã. Không sửa artifact, fixtures hay mã.
+- Nguồn/AI hỗ trợ nếu có: dùng Claude Code (Anthropic) để đọc repo, viết các script Python kiểm tra, chạy các lệnh Docker/pytest ở
+  trên và soạn nháp các đoạn báo cáo; kết quả lệnh và số liệu lấy từ log/JSON thật trong `artifacts/extra/` và artifact gốc. AI không
+  tạo số đo hay nhãn mới, và không chạy RAGAS hay judge live. Tôi cần đọc lại các sửa đổi trước khi nộp.
 
 ### DaoDucHai-2A202602752
 

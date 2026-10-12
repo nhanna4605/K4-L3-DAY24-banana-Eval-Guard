@@ -1,0 +1,43 @@
+# check_lab --with-tests on LF export of the repo (Lê Đức Hùng, 2A202602849)
+started_utc: 2026-10-12T16:14:02Z
+commit_sha: 8dbd1315e014cb6378bf347680fdb8153d05b963
+content: git clone of HEAD with core.autocrlf=false (LF, as stored in git) + the current working-tree doc/ edits converted to LF
+reason: on this Windows host core.autocrlf=true checks files out as CRLF, which changes the SHA-256 that check_lab compares with metadata.source_sha256
+host: Windows 10 Pro 10.0.19045, Docker 29.8.0, build 88096ef
+image: lab24 (sha256:aa0fb3621311); container python: Python 3.11.17
+env-file: none (checker and tests are offline); HF cache not mounted
+command: docker run --rm -v <lf-copy>:/lab -w /lab lab24 python scripts/check_lab.py --with-tests
+----- output (stdout+stderr) -----
+PASS README.md
+PASS doc/ASSIGNMENT.md
+PASS doc/SUBMISSION.md
+PASS doc/CHECKPOINTS.md
+PASS doc/RULES.md
+PASS doc/RUBRIC.md
+PASS doc/ENVIRONMENT.md
+PASS doc/PIPELINE_INTERFACE.md
+PASS doc/REPORT_SCHEMAS.md
+PASS doc/TEAM.md
+PASS doc/reports/failure_clusters.md
+PASS doc/reports/bias_report.md
+PASS doc/reports/blueprint.md
+PASS m1_chunking.py
+PASS m2_search.py
+PASS m3_rerank.py
+PASS m4_eval.py
+PASS m5_enrichment.py
+PASS phase_a_ragas.py
+PASS phase_b_judge.py
+PASS phase_c_guard.py
+PASS answers_50q.json
+PASS Phase A artifact
+PASS Phase B artifact
+PASS Phase C artifact
+........................................................................ [ 83%]
+..............                                                           [100%]
+86 passed, 3 deselected in 1.55s
+PASS offline pytest
+0 failed checks (not a rubric score).
+----- end output -----
+finished_utc: 2026-10-12T16:14:06Z
+exit_code: 0

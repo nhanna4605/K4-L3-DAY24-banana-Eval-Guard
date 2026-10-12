@@ -1,0 +1,12 @@
+# Attempt of: python scripts/run_experiments.py --phase a --live (isolated LF clone, no .env, no OPENAI_API_KEY)
+started_utc: 2026-10-12T16:12:02Z
+commit_sha: 8dbd1315e014cb6378bf347680fdb8153d05b963
+env-file: none; OPENAI_API_KEY unset on host and not passed to container
+----- output -----
+usage: run_experiments.py [-h] --phase {a,b,c,all} [--live]
+                          [--latency-samples LATENCY_SAMPLES]
+run_experiments.py: error: Set OPENAI_API_KEY in .env; never put the key in source.
+----- end -----
+finished_utc: 2026-10-12T16:12:03Z
+exit_code: 2
+result: no API call was made, no artifact was written; no scores obtained

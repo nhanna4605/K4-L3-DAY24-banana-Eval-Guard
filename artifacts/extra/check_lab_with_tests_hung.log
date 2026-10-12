@@ -1,0 +1,43 @@
+# check_lab --with-tests (Lê Đức Hùng, 2A202602849)
+started_utc: 2026-10-12T16:13:58Z
+commit_sha: 8dbd1315e014cb6378bf347680fdb8153d05b963
+working_tree_changes:  M doc/TEAM.md; M doc/reports/bias_report.md; M doc/reports/failure_clusters.md;?? artifacts/extra/;
+host: Windows 10 Pro 10.0.19045, Docker 29.8.0, build 88096ef
+image: lab24 (sha256:aa0fb3621311) built from infra/lab.Dockerfile on 2026-10-12
+container python: Python 3.11.17
+env-file: none (no .env on this machine; checker and tests are offline); HF cache not mounted
+command: docker run --rm -v <repo>:/lab -w /lab lab24 python scripts/check_lab.py --with-tests
+----- output (stdout+stderr) -----
+PASS README.md
+PASS doc/ASSIGNMENT.md
+PASS doc/SUBMISSION.md
+PASS doc/CHECKPOINTS.md
+PASS doc/RULES.md
+PASS doc/RUBRIC.md
+PASS doc/ENVIRONMENT.md
+PASS doc/PIPELINE_INTERFACE.md
+PASS doc/REPORT_SCHEMAS.md
+PASS doc/TEAM.md
+PASS doc/reports/failure_clusters.md
+PASS doc/reports/bias_report.md
+PASS doc/reports/blueprint.md
+PASS m1_chunking.py
+PASS m2_search.py
+PASS m3_rerank.py
+PASS m4_eval.py
+PASS m5_enrichment.py
+PASS phase_a_ragas.py
+PASS phase_b_judge.py
+PASS phase_c_guard.py
+PASS answers_50q.json
+FAIL Phase A artifact: Stale experiment source: answers_50q.json.
+FAIL Phase B artifact: Stale experiment source: answers_50q.json.
+FAIL Phase C artifact: Stale experiment source: adversarial_set_20.json.
+........................................................................ [ 83%]
+..............                                                           [100%]
+86 passed, 3 deselected in 1.58s
+PASS offline pytest
+3 failed checks (not a rubric score).
+----- end output -----
+finished_utc: 2026-10-12T16:14:02Z
+exit_code: 1

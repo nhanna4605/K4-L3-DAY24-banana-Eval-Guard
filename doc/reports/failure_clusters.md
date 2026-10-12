@@ -65,7 +65,7 @@ answer/contexts/reference của từng câu, không dùng diagnosis mặc địn
   "9 năm được 18 ngày". Id 22: chunk "Thẩm quyền phê duyệt" bị cắt sau dòng "dưới 5 triệu", nên answer đoán
   "Trưởng phòng" rồi tự mâu thuẫn; reference là Giám đốc phòng ban (5–50 triệu) và cần 3 báo giá (trên 10
   triệu). Id 21 và 39: thiếu chunk bảng lương Senior (20–35 triệu) và chunk chứa chu kỳ đổi mật khẩu 90 ngày của
-  policy v1.0 (chỉ lấy được phần đầu của `mat_khau_v1.md`).
+  policy v1.0 (chỉ lấy được phần đầu của `mat_khau_v1.md`). Bổ sung 2026-10-12 cho id 39: chunk "tối thiểu 12 ký tự" của `mat_khau_v2.md` cũng không được lấy, nên answer nêu "passphrase dài hơn 16 ký tự" thay cho độ dài tối thiểu của v2.0.
 - **Suy diễn quy tắc từ ví dụ (id 27).** Context recall 0.00: không có chunk quy tắc thâm niên v2024. Answer
   viết "ta có thể suy ra ... khoảng 17 ngày" từ ví dụ 9 năm → 18 ngày, ra đúng 17 và 13 nhưng không có căn cứ;
   faithfulness 0.33 phản ánh đúng việc này.
@@ -73,10 +73,13 @@ answer/contexts/reference của từng câu, không dùng diagnosis mặc địn
   VNĐ/đêm nhân viên tự trả. Answer còn gọi mức 1.200.000 là "chi phí công tác nước ngoài": dòng này nằm trong mục
   "Công tác trong nước" của `cong_tac_phi.md`, nhưng prefix ngữ cảnh do m5 sinh cho chunk ghi nhầm là "nước
   ngoài" và generator chép lại. Đây là lỗi enrichment chứ không phải lỗi retrieval. Id 34 bỏ thời hạn hoàn ứng 15
-  ngày. Id 35 không nêu số tiền ăn trưa 1.000.000 vì chunk `phu_cap.md` không nằm trong top-3.
+  ngày (đã sửa 2026-10-12: câu hỏi không hỏi mục này và không context nào chứa "15 ngày", đây là chunk không
+  được retrieve chứ không phải input đã có mà answer bỏ sót; xem mục kiểm chứng bổ sung). Id 35 không nêu số tiền ăn trưa 1.000.000 vì chunk `phu_cap.md` không nằm trong top-3.
 - **Điểm thấp do evaluator, không phải lỗi nội dung (id 28, 45).** Id 28 trả lời đúng 1.000.000 + 300.000 =
-  1.300.000, cả hai số đều có trong context, nhưng faithfulness 0.33 vì RAGAS coi câu tính tổng là không suy ra
-  trực tiếp. Id 45 trả lời đúng "MFA bắt buộc cho email, VPN, hệ thống nội bộ"; chỉ answer_relevancy thấp (0.30).
+  1.300.000, cả hai số đều có trong context, nhưng faithfulness 0.33 và context_precision 0.00. Nguyên nhân "RAGAS
+  coi câu tính tổng là không suy ra trực tiếp" chỉ là giả thuyết (đã sửa 2026-10-12: faithfulness của chính id 28 là
+  1.00 ở 3/5 lần chạy với answer không đổi, và context_precision 0.00 mâu thuẫn với context_recall 1.00; xem mục
+  kiểm chứng bổ sung). Id 45 trả lời đúng "MFA bắt buộc cho email, VPN, hệ thống nội bộ"; chỉ answer_relevancy thấp (0.30).
 
 ## Matrix và nhóm yếu nhất
 
@@ -137,3 +140,52 @@ Giới hạn: chỉ 50 câu (adversarial 10 câu, mỗi câu chiếm 1/10 mean n
 không cố định seed); evaluator cùng họ model với generator nên có thể ưu ái văn phong của chính nó; RAGAS dao
 động giữa các lần chạy như đã nêu; chẩn đoán bottom-10 dựa trên luật đối chiếu số liệu/từ khóa nên cần người
 đọc lại (đã đọc lại đủ 10 câu cho báo cáo này); hai PDF scan không được OCR.
+
+## Kiểm chứng bổ sung 2026-10-12 (Lê Đức Hùng — 2A202602849)
+
+Phần này tách khỏi các số đo lịch sử ở trên. Mọi giá trị lấy trực tiếp từ `artifacts/ragas_50q.json` (không sửa file này);
+chi tiết và log nằm ở `artifacts/extra/phase_ab_verification_hung.md`.
+
+### Hai lần chạy RAGAS thêm: không thực hiện được
+
+Hai lần `python scripts/run_experiments.py --phase a --live` **chưa được chạy**. Máy kiểm chứng không có `.env`, biến môi
+trường `OPENAI_API_KEY`/`OPENAI_BASE_URL` không được đặt, nên `run_experiments.py` dừng ngay ở bước kiểm tra khóa và không có
+lệnh gọi API nào được gửi. Không có `ragas_run_hung_1.json` hay `ragas_run_hung_2.json`; không số nào dưới đây là kết quả chạy thêm.
+Vì vậy câu hỏi "dải dao động 5 lần có tái lập không" vẫn chưa được kiểm chứng độc lập.
+
+### Mean theo distribution tính lại từ per_question (baseline)
+
+Tính bằng trung bình của avg_score từng câu (không dùng số đã làm tròn); khớp `per_distribution` của artifact.
+
+| Distribution | Baseline 09:55:57Z (6 chữ số) | Dải lịch sử đã ghi | Trong dải |
+|---|---|---|---|
+| factual | 0.879112 | 0.869–0.889 | có |
+| multi_hop | 0.686658 | 0.687–0.701 | sát biên dưới: làm tròn 3 chữ số là 0.687 nên nằm trong dải; ở 4 chữ số (0.6867) thấp hơn 0.687 một chút |
+| adversarial | 0.827235 | 0.815–0.834 | có |
+
+Dải lịch sử gồm cả lần chạy cuối (chính là artifact), nên baseline nằm ở hoặc gần biên là điều được kỳ vọng và không phải
+bằng chứng thêm về độ ổn định. Thứ tự multi_hop (0.6867) < adversarial (0.8272) < factual (0.8791) đúng với artifact. Chỉ một
+quan sát nên không có min/max mới; không rút ra được ý nghĩa thống kê.
+
+### Đọc lại cả 10 câu bottom-10 (answer, 3 contexts, ground truth, 4 metric)
+
+Bảng bottom-10 ở trên đã được so khớp từng ô với `bottom_10` trong artifact (rank, id, distribution, question, avg_score,
+worst_metric, diagnosis, suggested_fix): trùng nguyên văn 10/10; 10 avg_score tính lại từ per_question trùng khớp.
+
+| Rank | id | Kết luận | Nguyên nhân chính theo bằng chứng |
+|---|---|---|---|
+| 1 | 33 | Xác nhận | Retrieval: không có chunk phụ cấp, chunk "+1 ngày mỗi 3 năm" của v2024 không được lấy (context 3 là chunk đầu mục thâm niên của v2023); generation: suy 12 năm = +3 ngày từ ví dụ 9 năm, trả 18 thay vì 19 |
+| 2 | 22 | Xác nhận | Retrieval: bảng thẩm quyền bị cắt sau dòng dưới 5 triệu, không có 10/50 triệu; generation: tự mâu thuẫn ("Trưởng phòng" rồi "không tìm thấy"); AR 0.00 do câu từ chối |
+| 3 | 39 | Xác nhận, bổ sung | Ngoài "90 ngày" (v1.0), "tối thiểu 12 ký tự" của v2.0 cũng không có trong contexts nên answer nêu passphrase 16 ký tự; luật diagnosis bỏ sót 12 vì coi là giá trị suy ra. context_recall 0.00 thấp hơn thực tế: 3/6 ý reference (8 ký tự v1.0, 120 ngày, MFA bắt buộc v2.0) có trong contexts, nên đây còn là nhiễu evaluator |
+| 4 | 28 | Sửa lại | Retrieval ổn cho các số cần thiết (context 1 có Lead 300.000, context 2 có ăn trưa 1.000.000; context_recall 1.00) và answer đúng 1.300.000; context 3 là bảng lương, lạc đề nhưng ở hạng chót nên không thể kéo context_precision về 0.00 (chỉ khi cả 3 bị coi là không liên quan, mâu thuẫn với 2 chunk chứa đúng số). worst_metric là context_precision 0.00 nhưng diagnosis chỉ giải thích faithfulness 0.33. Cả hai là nhiễu evaluator; giả thuyết "câu tính tổng bị coi là không suy ra" không giải thích được vì faithfulness id 28 là 1.00 ở 3/5 lần chạy với answer không đổi |
+| 5 | 27 | Xác nhận | Retrieval thiếu chunk quy tắc thâm niên; generation suy rộng từ ví dụ ("khoảng 17"), kết quả 17 và 13 đúng nhờ may; faithfulness 0.33 hợp lý |
+| 6 | 21 | Xác nhận | Retrieval thiếu bảng lương Senior (bảng này có trong index, xuất hiện ở contexts của id 28 và 35); phần phép năm 18 ngày đúng; AR 0.00 do câu "Không tìm thấy" |
+| 7 | 31 | Xác nhận, làm rõ | 2.400.000 đúng; 300.000 là phần vượt do nhân viên tự trả (giá trị suy ra, câu hỏi không hỏi trực tiếp) nên nhãn "omits or miscomputes" của diagnosis không đúng. Lỗi thật là nhãn "nước ngoài" từ prefix m5 trên chunk "Công tác trong nước" (đã nêu ở trên), chunk kết thúc bằng tiêu đề "## Công tác nước ngoài" |
+| 8 | 35 | Xác nhận | Retrieval thiếu chunk ăn trưa 1.000.000 và chunk phụ cấp điện thoại; answer nói "nhận đầy đủ" mà không nêu số tiền, không có tổng 11.200.000 |
+| 9 | 34 | Sửa lại | Phần được hỏi (phê duyệt 4 triệu và 7 triệu) trả lời đúng và đủ. "15 ngày hoàn ứng" chỉ có trong reference, không có trong câu hỏi và không có trong bất kỳ context nào (nó nằm ở mục "Thời hạn thanh toán" của `tam_ung.md`); diagnosis coi 15 là giá trị suy ra (20 − 5) nên gán nhầm cho generation. Nguyên nhân thật là retrieval chưa lấy chunk đó (context_recall 0.67), cộng 2/3 chunk lạc đề (phí trễ hạn, hạn mức) kéo context_precision xuống 0.50 |
+| 10 | 45 | Xác nhận | Answer đúng và không lỗi; AR 0.30 là hiện tượng metric trên câu trả lời ngắn; context_recall 0.50 vì không có chunk v1.0 để chứa ý "v1.0 không yêu cầu MFA" của reference |
+
+Các sửa đổi đã áp dụng vào báo cáo: (1) id 28 — đổi khẳng định nguyên nhân thành giả thuyết và ghi nhận
+context_precision 0.00 mâu thuẫn với context_recall 1.00; (2) id 34 — thời hạn 15 ngày là chunk chưa retrieve, không phải
+input đã có mà answer bỏ sót; (3) id 39 — bổ sung chunk "12 ký tự" chưa retrieve. Bảng bottom-10 chép từ artifact được giữ nguyên
+văn (chẩn đoán gốc của id 28, 34, 39, 31 vẫn nằm trong bảng và bị các dòng trên thay thế khi đọc).
