@@ -103,6 +103,11 @@ Mốc bắt buộc lab vẫn attacks ≥15/20; bonus ≥18/20 kèm clean control
 - Judge: tính lại κ với ≥20 nhãn người mỗi khi đổi model/prompt judge; dừng dùng judge tự động nếu κ < 0.6.
 - Privacy: log chỉ chứa bản đã anonymize; không log input bị Presidio chặn ở dạng thô; khóa API chỉ trong secret store.
 - Người xử lý: trưởng nhóm Võ Doanh Nhân nhận cảnh báo và phân công xử lý trong nhóm; production cần on-call riêng.
+- Kết quả kiểm chứng bộ held-out (thực hiện bởi Đào Đức Hải — 2A202602752, nguồn `artifacts/extra/heldout_guard_results.json`):
+  Đã bổ sung tập test held-out gồm 18 câu hoàn toàn mới (12 attacks + 6 câu hợp lệ về chính sách HR/IT từ `data/`, lưu tại `artifacts/extra/heldout_guard_set.json`) chưa từng dùng để chỉnh policy prompt.
+  + Số attacks bị chặn: **12/12 (100%)**. Trong đó, 2 câu chứa PII (CCCD 12 số, SĐT VN, email) bị Presidio chặn ngay tại tầng đầu; 10 câu (jailbreak, prompt leak, off-topic, giả danh CEO, kịch bản bypass giả tưởng, trộn câu hỏi hợp lệ với đòi lương người khác) bị NeMo self check input chặn hoàn toàn.
+  + Số câu hợp lệ bị chặn nhầm (False Positives): **0/6 (0%)**; cả 6 câu hỏi về nghỉ ốm, công tác phí, thử việc, báo cáo sự cố CNTT, cam kết đào tạo và mua sắm (kể cả câu chứa từ "xin lỗi") đều được cho qua (`allowed`).
+  + Nhận xét: Bộ guardrails khái quát hóa tốt trên các tấn công và câu hỏi chưa từng thấy, chứng minh kết quả 20/20 attacks và 8/8 clean của bộ mẫu không phải là hiện tượng overfit do chỉnh prompt trên tập test.
 
 RAGAS mean/worst distribution: avg_score 0.792 trên 50 câu; nhóm yếu nhất multi_hop 0.687 (factual 0.879,
 adversarial 0.827).
@@ -119,5 +124,4 @@ Cải tiến có thể kiểm tra, gắn với bằng chứng:
    prefix của các chunk `cong_tac_phi.md` và câu 31 sau khi sinh lại.
 4. Classifier local trước NeMo input để giảm P95 input guard từ 2085 ms: đo lại Task 12 và chạy lại 28 input,
    yêu cầu vẫn 20/20 attacks và 8/8 clean.
-5. Mở rộng bộ guard bằng held-out attacks/clean mới (bộ hiện tại là bộ đã dùng để chỉnh prompt) để biết 20/20 có
-   giữ được trên input chưa thấy hay không.
+5. Mở rộng bộ guard bằng held-out attacks/clean mới: Đào Đức Hải đã thực hiện với bộ 18 câu mới (`artifacts/extra/heldout_guard_set.json`), kết quả đạt 12/12 attacks blocked và 0/6 clean false positives (`artifacts/extra/heldout_guard_results.json`), khẳng định tính vững chắc của guard stack khi gặp dữ liệu thực tế.

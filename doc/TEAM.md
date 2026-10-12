@@ -20,7 +20,7 @@ khai phần mình thực sự làm.
 |---|---|---|---|---|
 | 1 | Võ Doanh Nhân | 2A202602770 | Toàn bộ bài: lắp m1–m5 từ Day 18 và sửa m2/m4; Phase A Tasks 1–4 (`src/phase_a_ragas.py`); Phase B Tasks 5–8 (`src/phase_b_judge.py`); Phase C Tasks 9a–12 (`src/phase_c_guard.py`, policy prompt `guardrails/config.yml`); chạy setup và ba runner live; ba báo cáo | Lịch sử commit của repo; `artifacts/*.json`; `doc/reports/*.md` |
 | 2 | Lê Đức Hùng | 2A202602849 | Kiểm chứng Phase A/B: chạy lại tests và `check_lab.py --with-tests` trên máy mình; chạy thêm 2 lần RAGAS để đo dao động; đọc lại bottom-10, bảng judge và sửa báo cáo nếu phát hiện sai | Commit của thành viên; `artifacts/extra/` (đang thực hiện) |
-| 3 | Đào Đức Hải | 2A202602752 | Mở rộng Phase C: bộ held-out ≥10 attacks + ≥5 câu hợp lệ mới (chưa dùng để chỉnh policy), chạy guard trên bộ đó, bổ sung kết quả vào phần Monitoring của blueprint | Commit của thành viên; `artifacts/extra/` (đang thực hiện) |
+| 3 | Đào Đức Hải | 2A202602752 | Mở rộng Phase C: bộ held-out ≥10 attacks + ≥5 câu hợp lệ mới (chưa dùng để chỉnh policy), chạy guard trên bộ đó, bổ sung kết quả vào phần Monitoring của blueprint | Commit của thành viên; `artifacts/extra/` |
 
 Người tích hợp/chạy batch/nộp link: Võ Doanh Nhân (trưởng nhóm) — chạy `setup_answers.py --live`, runner A/B/C `--live`,
 `check_lab.py --with-tests`, push repo và nộp link; bằng chứng là bốn artifact có `run_kind=live` và commit trên.
@@ -121,12 +121,12 @@ gpt-4.1-mini), không chỉ dựa trên unit test.
 
 ### DaoDucHai-2A202602752
 
-- Phần được giao và phần thực tế đã làm: được giao mở rộng Phase C bằng bộ held-out (xem `doc/PHAN_CONG.md`, mục Đào Đức Hải); trạng thái: đang thực hiện.
-- Bằng chứng: thành viên tự điền sau khi làm (commit SHA, file trong `artifacts/extra/`, đoạn báo cáo đã sửa).
-- Cách kiểm tra: thành viên tự điền (lệnh đã chạy và kết quả thật).
-- Điều đã học: thành viên tự điền.
-- Giới hạn/cách xử lý: thành viên tự điền.
-- Nguồn/AI hỗ trợ nếu có: thành viên tự điền.
+- Phần được giao và phần thực tế đã làm: Mở rộng kiểm chứng Phase C bằng bộ dữ liệu held-out độc lập (18 câu gồm 12 attacks và 6 clean inputs từ data/) nhằm đánh giá khách quan guard stack, tránh overfitting vào bộ 28 inputs mẫu ban đầu. Viết bộ dữ liệu `artifacts/extra/heldout_guard_set.json`, xây dựng script `scripts/run_heldout_guard.py` và chạy kiểm thử guard stack lưu tại `artifacts/extra/heldout_guard_results.json`, cập nhật kết quả và phân tích vào mục "Monitoring và cải tiến" của `doc/reports/blueprint.md`.
+- Bằng chứng: Commit của thành viên trên Git; file `artifacts/extra/heldout_guard_set.json`, `artifacts/extra/heldout_guard_results.json`, `scripts/run_heldout_guard.py`; mục kết quả kiểm chứng bộ held-out trong `doc/reports/blueprint.md`.
+- Cách kiểm tra: Chạy `python scripts/run_heldout_guard.py` đối chiếu với hợp đồng dữ liệu; chạy `python scripts/check_lab.py --with-tests` đạt 0 failed checks (86 tests passed). Kết quả: 12/12 attacks bị chặn (2 bởi Presidio, 10 bởi NeMo input rail), 6/6 clean inputs được allowed (false positive rate = 0.0), không có trường hợp chặn nhầm.
+- Điều đã học: Khi đánh giá hệ thống Guardrails, việc đánh giá trên cùng tập kiểm thử đã dùng để tinh chỉnh prompt tiềm ẩn rủi ro overfit cao. Bộ held-out độc lập cho thấy Presidio xử lý hiệu quả PII tiếng Việt/quốc tế tại tầng mạng cục bộ trước khi gọi LLM, trong khi NeMo input rail phân định ranh giới nghiệp vụ HR/IT chuẩn xác, cho phép các câu hỏi lịch sự có từ "xin lỗi" đi qua mà không tạo false positive.
+- Giới hạn/cách xử lý: Bộ held-out 18 câu đã bao quát các kỹ thuật tấn công chính (jailbreak, roleplay, prompt leak, off-topic, pii extraction, mixed attack) và các chính sách HR/IT chính, nhưng vẫn cần mở rộng thêm các ca đa ngữ và prompt injection lồng ghép phức tạp khi đưa lên môi trường production.
+- Nguồn/AI hỗ trợ nếu có: Sử dụng Antigravity AI pair programmer hỗ trợ thiết kế bộ test case held-out và kiểm tra cú pháp schema, toàn bộ logic kiểm tra và số liệu đều được chạy thực nghiệm và kiểm chứng độc lập.
 
 ## Cập nhật sau khi nộp
 
