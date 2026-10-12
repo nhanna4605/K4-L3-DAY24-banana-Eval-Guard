@@ -8,7 +8,7 @@ Trưởng nhóm/người nộp: Võ Doanh Nhân — 2A202602770
 
 Ngày lab/deadline áp dụng: 2026-10-12, deadline 23:59 — Asia/Ho_Chi_Minh (UTC+07:00)
 
-Commit dùng để chấm: <<SHA>>
+Commit dùng để chấm: 7a0f68bd01ab5611b8b95b2c09dc686fb8407f90 (commit cuối trên main chỉ ghi SHA này vào TEAM)
 
 Mỗi nhóm nộp một repo. Nhóm này có một thành viên nên bảng chỉ có một row và một mục INDIVIDUAL.
 
