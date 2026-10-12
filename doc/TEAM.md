@@ -6,7 +6,7 @@ Repo chung: https://github.com/nhanna4605/K4-L3-DAY24-VoDoanhNhan-Eval-Guard
 
 Trưởng nhóm/người nộp: Võ Doanh Nhân — 2A202602770
 
-Ngày lab/deadline áp dụng: 2026-10-12, deadline 23:59 — Asia/Ho_Chi_Minh (UTC+07:00)
+Ngày lab/deadline áp dụng: lab ngày 2026-10-12; hạn nộp 13/10/2026 11:59 theo trang nộp bài VLearn — Asia/Ho_Chi_Minh (UTC+07:00)
 
 Commit dùng để chấm: 7a0f68bd01ab5611b8b95b2c09dc686fb8407f90 (commit cuối trên main chỉ ghi SHA này vào TEAM)
 
@@ -85,5 +85,5 @@ gpt-4.1-mini), không chỉ dựa trên unit test.
 
 ## Cập nhật sau khi nộp
 
-Phiên bản nộp là commit ghi ở đầu file; commit cuối cùng trên nhánh main chỉ thêm SHA đó vào file này. Chưa có cập
+Phiên bản nộp là commit ghi ở đầu file; các commit sau đó trên nhánh main chỉ sửa file này (ghi SHA và hạn nộp). Chưa có cập
 nhật sau khi nộp.
