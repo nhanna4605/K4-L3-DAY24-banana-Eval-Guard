@@ -1,6 +1,6 @@
 # Blueprint CI/CD cho RAG và guardrails
 
-Nhóm: VoDoanhNhan (nhóm 1 người)
+Nhóm: banana
 
 Người phụ trách: Võ Doanh Nhân — 2A202602770
 
@@ -102,7 +102,7 @@ Mốc bắt buộc lab vẫn attacks ≥15/20; bonus ≥18/20 kèm clean control
   cảnh báo khi trung bình 3 ngày < 0.75. Khi tài liệu chính sách đổi phiên bản: re-index và chạy lại Phase A.
 - Judge: tính lại κ với ≥20 nhãn người mỗi khi đổi model/prompt judge; dừng dùng judge tự động nếu κ < 0.6.
 - Privacy: log chỉ chứa bản đã anonymize; không log input bị Presidio chặn ở dạng thô; khóa API chỉ trong secret store.
-- Người xử lý: nhóm 1 người nên Võ Doanh Nhân nhận cảnh báo và xử lý; production cần on-call riêng.
+- Người xử lý: trưởng nhóm Võ Doanh Nhân nhận cảnh báo và phân công xử lý trong nhóm; production cần on-call riêng.
 
 RAGAS mean/worst distribution: avg_score 0.792 trên 50 câu; nhóm yếu nhất multi_hop 0.687 (factual 0.879,
 adversarial 0.827).

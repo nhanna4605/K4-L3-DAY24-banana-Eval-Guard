@@ -1,6 +1,6 @@
 # Đánh giá LLM Judge Phase B
 
-Nhóm: VoDoanhNhan (nhóm 1 người)
+Nhóm: banana
 
 Người phụ trách: Võ Doanh Nhân — 2A202602770
 

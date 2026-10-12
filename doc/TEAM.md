@@ -1,8 +1,8 @@
 # Nhóm thực hiện K4 Track 3B
 
-Tên nhóm: VoDoanhNhan (3 thành viên; repo giữ tên đặt lúc tạo)
+Tên nhóm: banana (3 thành viên)
 
-Repo chung: https://github.com/nhanna4605/K4-L3-DAY24-VoDoanhNhan-Eval-Guard
+Repo chung: https://github.com/nhanna4605/K4-L3-DAY24-banana-Eval-Guard
 
 Trưởng nhóm/người nộp: Võ Doanh Nhân — 2A202602770
 
@@ -50,7 +50,7 @@ gpt-4.1-mini), không chỉ dựa trên unit test.
 
 ### VoDoanhNhan-2A202602770
 
-- Phần được giao và phần thực tế đã làm: làm toàn bộ bài vì nhóm có một người. Phase A: nhóm 50 câu
+- Phần được giao và phần thực tế đã làm: làm toàn bộ phần kỹ thuật trước khi lớp chuyển sang làm nhóm. Phase A: nhóm 50 câu
   (Task 1), adapter `run_ragas_50q` lấy model từ metadata m4 và từ chối NaN (Task 2), `bottom_10` với chẩn đoán
   theo bằng chứng của từng câu: số liệu reference có trong contexts/answer hay không, giá trị suy ra bằng phép
   tính, câu trả lời từ chối, quy tắc của bản chính sách đã thay thế (Task 3), `cluster_analysis` chọn nhóm yếu theo
@@ -109,4 +109,5 @@ gpt-4.1-mini), không chỉ dựa trên unit test.
 
 Lần nộp đầu: 12/10/2026 17:07 (mã BN-261012-40595), khi bài còn làm một người theo Track 3A, commit 7a0f68b. Sau đó lớp
 chuyển sang Track 3B làm nhóm: repo được cập nhật tiêu đề theo starter 3B (code, tests, fixtures, rubric không đổi), thêm
-hai thành viên và phần việc của họ. Trưởng nhóm ghi SHA cuối cùng ở đầu file và nộp lại link trước hạn 13/10/2026 11:59.
+hai thành viên và phần việc của họ; nhóm đặt tên banana và repo được đổi tên thành
+K4-L3-DAY24-banana-Eval-Guard. Trưởng nhóm ghi SHA cuối cùng ở đầu file và nộp lại link trước hạn 13/10/2026 11:59.

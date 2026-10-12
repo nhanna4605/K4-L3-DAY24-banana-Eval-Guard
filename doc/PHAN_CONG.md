@@ -9,8 +9,8 @@ commit bằng tài khoản GitHub của mình và tự điền mục INDIVIDUAL 
 ## Chuẩn bị chung
 
 ```bash
-git clone https://github.com/nhanna4605/K4-L3-DAY24-VoDoanhNhan-Eval-Guard.git
-cd K4-L3-DAY24-VoDoanhNhan-Eval-Guard
+git clone https://github.com/nhanna4605/K4-L3-DAY24-banana-Eval-Guard.git
+cd K4-L3-DAY24-banana-Eval-Guard
 docker build -f infra/lab.Dockerfile -t lab24 .
 ```
 
