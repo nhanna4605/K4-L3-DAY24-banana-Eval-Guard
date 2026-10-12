@@ -1,0 +1,252 @@
+{
+  "metadata": {
+    "format_version": 2,
+    "run_kind": "live",
+    "models": {
+      "generation": [
+        "gpt-4.1-mini"
+      ],
+      "evaluator": [],
+      "judge": [
+        "gpt-4.1-mini"
+      ],
+      "guard": []
+    },
+    "created_at": "2026-10-12T09:33:02.502450+00:00",
+    "source_sha256": {
+      "answers_50q.json": "5ee7c22ab53590b75d16843c403c3e4c3ea3ff04ac262e8c8ec88bfb3d2799f6",
+      "test_set_50q.json": "3ad288426e3066e561737b35b66b671e6c411697dffd0d1161cc7b801e5954cc",
+      "human_labels_10q.json": "37231c1f4a635801e27a98333898d2d4c9c3c71167e8b9e7259b90cec5956782"
+    }
+  },
+  "pair_sources": {
+    "A": "artifacts/answers_50q.json:answer",
+    "B": "fixtures/human_labels_10q.json:model_answer",
+    "reference": "fixtures/test_set_50q.json:ground_truth"
+  },
+  "pairwise_results": [
+    {
+      "question_id": 1,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày khi kết hôn?",
+      "answer_a": "Nhân viên được nghỉ 3 ngày làm việc khi kết hôn.",
+      "answer_b": "Nhân viên được nghỉ 3 ngày làm việc có lương khi kết hôn.",
+      "winner_pass1": "B",
+      "winner_pass2": "B",
+      "final_winner": "B",
+      "reasoning_pass1": "Answer B chính xác hơn vì có đầy đủ thông tin về 3 ngày làm việc có lương, trong khi Answer A thiếu phần 'có lương'. Cả hai đều trả lời đúng số ngày nghỉ, nhưng B đầy đủ hơn. Cả hai đều súc tích và không thừa ý.",
+      "reasoning_pass2": "Answer A chính xác và đầy đủ hơn vì có đề cập rõ là nghỉ có lương, đúng với reference. Answer B thiếu thông tin về lương, làm giảm độ chính xác và đầy đủ.",
+      "position_consistent": true,
+      "scores_pass1": {
+        "A": 0.7,
+        "B": 1.0
+      },
+      "scores_pass2": {
+        "A": 0.7,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 5,
+      "question": "Muốn mua thiết bị trị giá 55 triệu cần ai phê duyệt?",
+      "answer_a": "Muốn mua thiết bị trị giá 55 triệu cần Tổng Giám đốc (CEO) phê duyệt.",
+      "answer_b": "Cần Giám đốc phòng ban phê duyệt.",
+      "winner_pass1": "A",
+      "winner_pass2": "A",
+      "final_winner": "A",
+      "reasoning_pass1": "Answer A chính xác khớp với reference về số tiền và người phê duyệt, đầy đủ ý hỏi, và súc tích. Answer B sai người phê duyệt, không đúng chính sách.",
+      "reasoning_pass2": "Answer B chính xác và đầy đủ theo chính sách tham chiếu, nêu rõ mức giá trên 50 triệu cần CEO phê duyệt. Answer A sai về người phê duyệt và không đúng con số.",
+      "position_consistent": true,
+      "scores_pass1": {
+        "A": 1.0,
+        "B": 0.0
+      },
+      "scores_pass2": {
+        "A": 1.0,
+        "B": 0.2
+      }
+    },
+    {
+      "question_id": 12,
+      "question": "Thưởng Tết tối thiểu cho nhân viên chính thức có từ 6 tháng trở lên là bao nhiêu?",
+      "answer_a": "Thưởng Tết tối thiểu cho nhân viên chính thức có từ 6 tháng trở lên là 1 tháng lương.",
+      "answer_b": "Nhân viên được thưởng Tết tối thiểu 1 tháng lương.",
+      "winner_pass1": "A",
+      "winner_pass2": "A",
+      "final_winner": "A",
+      "reasoning_pass1": "Answer A chính xác và đầy đủ hơn khi nêu rõ điều kiện 'có từ 6 tháng trở lên' và mức thưởng tối thiểu là 1 tháng lương, khớp với reference. Answer B thiếu điều kiện về thời gian làm việc, nên không chính xác và không đầy đủ.",
+      "reasoning_pass2": "Cả hai đáp án đều chính xác và đầy đủ về con số thưởng Tết tối thiểu là 1 tháng lương. Tuy nhiên, đáp án B nêu rõ đối tượng là nhân viên chính thức có từ 6 tháng trở lên, đúng với câu hỏi và reference, trong khi đáp án A thiếu phần điều kiện này, nên đáp án B đầy đủ và chính xác hơn. Cả hai đều súc tích.",
+      "position_consistent": true,
+      "scores_pass1": {
+        "A": 1.0,
+        "B": 0.6
+      },
+      "scores_pass2": {
+        "A": 1.0,
+        "B": 0.8
+      }
+    },
+    {
+      "question_id": 21,
+      "question": "Một nhân viên Senior có 9 năm thâm niên được nghỉ bao nhiêu ngày phép năm và lương trong khoảng nào?",
+      "answer_a": "Một nhân viên Senior có 9 năm thâm niên được nghỉ 18 ngày phép năm (15 + 3) theo ví dụ trong phần quy định sử dụng. \n\nTuy nhiên, thông tin về mức lương trong khoảng nào không được cung cấp trong đoạn văn đã cho.\n\nVậy, số ngày phép năm là 18 ngày, còn lương thì \"Không tìm thấy.\"",
+      "answer_b": "Được nghỉ 18 ngày phép (15 cơ bản + 3 thâm niên). Lương Senior từ 20 đến 35 triệu.",
+      "winner_pass1": "B",
+      "winner_pass2": "B",
+      "final_winner": "B",
+      "reasoning_pass1": "Answer B chính xác và đầy đủ hơn khi cung cấp cả số ngày phép và khoảng lương đúng theo chính sách tham chiếu. Answer A thiếu thông tin về lương, không đầy đủ. Cả hai đều súc tích, nhưng B vượt trội về độ chính xác và đầy đủ.",
+      "reasoning_pass2": "Answer A chính xác và đầy đủ theo chính sách v2024, nêu rõ số ngày phép (18 ngày) và khoảng lương (20-35 triệu). Answer B thiếu thông tin về lương, không đầy đủ. Cả hai đều súc tích, nhưng A vượt trội về độ chính xác và đầy đủ.",
+      "position_consistent": true,
+      "scores_pass1": {
+        "A": 0.6,
+        "B": 1.0
+      },
+      "scores_pass2": {
+        "A": 0.6,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 41,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày phép năm?",
+      "answer_a": "Mỗi nhân viên chính thức được hưởng 15 ngày phép năm có lương theo chính sách nghỉ phép năm phiên bản 2024.",
+      "answer_b": "Nhân viên được nghỉ 12 ngày phép năm.",
+      "winner_pass1": "A",
+      "winner_pass2": "A",
+      "final_winner": "A",
+      "reasoning_pass1": "Answer A chính xác theo chính sách v2024 hiện hành (15 ngày), đầy đủ hơn khi nêu rõ phiên bản chính sách. Answer B chỉ đúng với chính sách cũ 2023, không đúng với yêu cầu ưu tiên phiên bản 2024. Cả hai đều súc tích.",
+      "reasoning_pass2": "Answer B chính xác theo chính sách v2024 hiện hành (15 ngày), đầy đủ và không sai lệch. Answer A chỉ nêu 12 ngày, là chính sách cũ đã bị thay thế, nên không chính xác. Cả hai đều súc tích, nhưng B đúng và đầy đủ hơn.",
+      "position_consistent": true,
+      "scores_pass1": {
+        "A": 1.0,
+        "B": 0.3
+      },
+      "scores_pass2": {
+        "A": 1.0,
+        "B": 0.3
+      }
+    }
+  ],
+  "binary_judgments": [
+    {
+      "question_id": 1,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày khi kết hôn?",
+      "model_answer": "Nhân viên được nghỉ 3 ngày làm việc có lương khi kết hôn.",
+      "label": 1,
+      "reasoning": "Câu trả lời đúng và đầy đủ theo tham chiếu, nêu rõ số ngày nghỉ và có lương khi kết hôn."
+    },
+    {
+      "question_id": 5,
+      "question": "Muốn mua thiết bị trị giá 55 triệu cần ai phê duyệt?",
+      "model_answer": "Cần Giám đốc phòng ban phê duyệt.",
+      "label": 0,
+      "reasoning": "Câu trả lời sai vì theo reference, đơn hàng trên 50 triệu cần Tổng Giám đốc phê duyệt, không phải Giám đốc phòng ban."
+    },
+    {
+      "question_id": 12,
+      "question": "Thưởng Tết tối thiểu cho nhân viên chính thức có từ 6 tháng trở lên là bao nhiêu?",
+      "model_answer": "Nhân viên được thưởng Tết tối thiểu 1 tháng lương.",
+      "label": 1,
+      "reasoning": "Câu trả lời chính xác, đầy đủ ý về mức thưởng Tết tối thiểu cho nhân viên chính thức từ 6 tháng trở lên theo đúng nội dung tham chiếu."
+    },
+    {
+      "question_id": 21,
+      "question": "Một nhân viên Senior có 9 năm thâm niên được nghỉ bao nhiêu ngày phép năm và lương trong khoảng nào?",
+      "model_answer": "Được nghỉ 18 ngày phép (15 cơ bản + 3 thâm niên). Lương Senior từ 20 đến 35 triệu.",
+      "label": 1,
+      "reasoning": "Câu trả lời đúng theo chính sách v2024, nêu rõ số ngày phép là 18 (15 cơ bản + 3 thâm niên) và mức lương Senior từ 20 đến 35 triệu, khớp với reference."
+    },
+    {
+      "question_id": 23,
+      "question": "Nhân viên được tài trợ khóa học 25 triệu, nghỉ việc sau 8 tháng. Phải hoàn trả bao nhiêu?",
+      "model_answer": "Hoàn trả 25 triệu vì chưa đủ 1 năm cam kết.",
+      "label": 1,
+      "reasoning": "Câu trả lời chính xác theo chính sách: nhân viên nghỉ việc sau 8 tháng (chưa đủ 1 năm cam kết) nên phải hoàn trả toàn bộ 25 triệu."
+    },
+    {
+      "question_id": 29,
+      "question": "Nhân viên tạm ứng 8 triệu, chưa thanh toán sau 30 ngày. Ai phê duyệt và phí phạt là bao nhiêu?",
+      "model_answer": "Trưởng phòng phê duyệt. Phạt 2% tháng trên 8 triệu.",
+      "label": 0,
+      "reasoning": "Answer thiếu phê duyệt của Kế toán trưởng theo reference và không nêu rõ phí phạt áp dụng cho quá hạn 15 ngày, không chỉ 2% tháng trên toàn bộ 8 triệu."
+    },
+    {
+      "question_id": 33,
+      "question": "Nhân viên Manager có thâm niên 12 năm: tổng phụ cấp hàng tháng và số ngày phép năm?",
+      "model_answer": "Phép: 19 ngày. Phụ cấp: 1.500.000 VNĐ/tháng.",
+      "label": 1,
+      "reasoning": "Câu trả lời đúng theo chính sách: phép năm 19 ngày (15 ngày cơ bản + 4 ngày thâm niên) và tổng phụ cấp 1.500.000 VNĐ/tháng (1.000.000 ăn trưa + 500.000 điện thoại Manager)."
+    },
+    {
+      "question_id": 41,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày phép năm?",
+      "model_answer": "Nhân viên được nghỉ 12 ngày phép năm.",
+      "label": 0,
+      "reasoning": "Câu trả lời chỉ nêu 12 ngày phép năm theo chính sách cũ v2023, trong khi chính sách hiện hành v2024 quy định 15 ngày cơ bản cộng thêm 1 ngày mỗi 3 năm thâm niên, nên câu trả lời không chính xác theo phiên bản mới nhất."
+    },
+    {
+      "question_id": 46,
+      "question": "Nhân viên thử việc có được nghỉ phép năm không?",
+      "model_answer": "Nhân viên thử việc không được nghỉ phép năm và phải xin nghỉ không lương nếu cần.",
+      "label": 1,
+      "reasoning": "Câu trả lời khẳng định nhân viên thử việc không được nghỉ phép năm và phải xin nghỉ không lương nếu cần, hoàn toàn phù hợp với nội dung tham khảo, bao gồm cả phủ định và điều kiện phê duyệt."
+    },
+    {
+      "question_id": 50,
+      "question": "Nhân viên Manager có thể dùng VPN cá nhân (NordVPN) khi WFH không?",
+      "model_answer": "Được, miễn là đảm bảo kết nối an toàn.",
+      "label": 0,
+      "reasoning": "Câu trả lời cho rằng được phép dùng VPN cá nhân miễn đảm bảo an toàn, trong khi chính sách rõ ràng cấm sử dụng VPN cá nhân và bắt buộc dùng VPN của công ty."
+    }
+  ],
+  "calibration": {
+    "question_ids": [
+      1,
+      5,
+      12,
+      21,
+      23,
+      29,
+      33,
+      41,
+      46,
+      50
+    ],
+    "judge_labels": [
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "human_labels": [
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "cohen_kappa": 1.0
+  },
+  "bias_report": {
+    "total_judged": 5,
+    "position_bias_rate": 0.0,
+    "position_bias_count": 0,
+    "verbosity_bias": 0.8,
+    "verbosity_details": {
+      "a_wins_a_longer": 3,
+      "b_wins_b_longer": 1,
+      "total_decisive": 5
+    },
+    "interpretation": "Position bias 0/5 pairs (0%): low — the two orders mostly agree, swap-and-average still guards the rest. Longer answer won 4/5 decisive pairs (80%); above 0.6 — check that the longer winners are also more correct before trusting the judge; with only a few pairs this is weak evidence."
+  }
+}

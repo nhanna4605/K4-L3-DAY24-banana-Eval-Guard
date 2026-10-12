@@ -45,8 +45,13 @@ GUARDRAILS_CONFIG_DIR = os.path.join(ROOT_DIR, "guardrails")
 PAIR_QUESTION_IDS = (1, 5, 12, 21, 41)
 
 # --- LLM Judge ---
-GENERATION_MODEL = "gpt-4o-mini"
-JUDGE_MODEL = "gpt-4o-mini"
+# All OpenAI-compatible calls go to OPENAI_BASE_URL from .env (an OpenAI-compatible gateway).
+GENERATION_MODEL = "gpt-4.1-mini"
+JUDGE_MODEL = "gpt-4.1-mini"
+
+# --- RAGAS evaluator (m4) ---
+EVALUATOR_MODEL = "gpt-4.1-mini"
+EVALUATOR_EMBEDDING_MODEL = "text-embedding-3-small"
 
 # --- Guardrail latency budget ---
 LATENCY_BUDGET_P95_MS = 500  # Full guard target; Task 12 currently measures input guards only.
