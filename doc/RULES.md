@@ -1,4 +1,4 @@
-# Quy định K4 Track 3A
+# Quy định K4 Track 3B
 
 **Hình thức: bài nhóm, một repo chung và một lần nộp link do trưởng nhóm thực hiện.**
 

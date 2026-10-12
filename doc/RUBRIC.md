@@ -1,4 +1,4 @@
-# Rubric K4 Track 3A
+# Rubric K4 Track 3B
 
 **Bài nhóm, một repo chung. Bắt buộc 100 điểm; bonus tối đa 10.**
 Chấm source và bằng chứng thật trong artifacts/reports; unit/mock tests không

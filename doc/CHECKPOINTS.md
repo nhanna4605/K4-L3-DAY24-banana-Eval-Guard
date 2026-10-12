@@ -1,4 +1,4 @@
-# Checkpoints K4 Track 3A
+# Checkpoints K4 Track 3B
 
 Bài nhóm, một repo chung. Ghi người phụ trách và bằng chứng trong `doc/TEAM.md`.
 Cài đặt/tải model/indexing/generation là chuẩn bị trước lớp. Thời lượng trên lớp:

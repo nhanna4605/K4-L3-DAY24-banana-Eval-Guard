@@ -1,11 +1,11 @@
 ---
 day: "D24"
-title: "K4 Track 3A — Production Eval + Guardrail Stack"
+title: "K4 Track 3B — Production Eval + Guardrail Stack"
 requiresSubmission: true
 workMode: "team"
 ---
 
-# K4 Track 3A — Production Eval + Guardrail Stack
+# K4 Track 3B — Production Eval + Guardrail Stack
 
 **Bài nhóm, nộp một repo chung của trưởng nhóm.** Điền thành viên/MSSV và
 INDIVIDUAL trong `doc/TEAM.md`. Có 100 điểm bắt buộc và tối đa 10 bonus.

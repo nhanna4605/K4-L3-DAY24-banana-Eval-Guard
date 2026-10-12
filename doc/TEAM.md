@@ -1,6 +1,6 @@
-# Nhóm thực hiện K4 Track 3A
+# Nhóm thực hiện K4 Track 3B
 
-Tên nhóm: VoDoanhNhan (nhóm 1 người)
+Tên nhóm: VoDoanhNhan (3 thành viên; repo giữ tên đặt lúc tạo)
 
 Repo chung: https://github.com/nhanna4605/K4-L3-DAY24-VoDoanhNhan-Eval-Guard
 
@@ -8,17 +8,21 @@ Trưởng nhóm/người nộp: Võ Doanh Nhân — 2A202602770
 
 Ngày lab/deadline áp dụng: lab ngày 2026-10-12; hạn nộp 13/10/2026 11:59 theo trang nộp bài VLearn — Asia/Ho_Chi_Minh (UTC+07:00)
 
-Commit dùng để chấm: 7a0f68bd01ab5611b8b95b2c09dc686fb8407f90 (commit cuối trên main chỉ ghi SHA này vào TEAM)
+Commit dùng để chấm: bản kỹ thuật đã chạy live là 7a0f68bd01ab5611b8b95b2c09dc686fb8407f90; trưởng nhóm cập nhật SHA cuối cùng sau khi hai thành viên commit xong phần việc của mình.
 
-Mỗi nhóm nộp một repo. Nhóm này có một thành viên nên bảng chỉ có một row và một mục INDIVIDUAL.
+Mỗi nhóm nộp một repo. Lớp chuyển sang Track 3B làm nhóm sau khi Võ Doanh Nhân đã hoàn thành phần kỹ thuật; hai thành viên
+còn lại nhận phần kiểm chứng và mở rộng ghi trong bảng dưới (hướng dẫn chi tiết: `doc/PHAN_CONG.md`). Mỗi người chỉ
+khai phần mình thực sự làm.
 
 ## Thành viên và phân công
 
 | STT | Họ và tên | MSSV | Vai trò / công việc thật | Bằng chứng |
 |---|---|---|---|---|
 | 1 | Võ Doanh Nhân | 2A202602770 | Toàn bộ bài: lắp m1–m5 từ Day 18 và sửa m2/m4; Phase A Tasks 1–4 (`src/phase_a_ragas.py`); Phase B Tasks 5–8 (`src/phase_b_judge.py`); Phase C Tasks 9a–12 (`src/phase_c_guard.py`, policy prompt `guardrails/config.yml`); chạy setup và ba runner live; ba báo cáo | Lịch sử commit của repo; `artifacts/*.json`; `doc/reports/*.md` |
+| 2 | Lê Đức Hùng | 2A202602849 | Kiểm chứng Phase A/B: chạy lại tests và `check_lab.py --with-tests` trên máy mình; chạy thêm 2 lần RAGAS để đo dao động; đọc lại bottom-10, bảng judge và sửa báo cáo nếu phát hiện sai | Commit của thành viên; `artifacts/extra/` (đang thực hiện) |
+| 3 | Đào Đức Hải | 2A202602752 | Mở rộng Phase C: bộ held-out ≥10 attacks + ≥5 câu hợp lệ mới (chưa dùng để chỉnh policy), chạy guard trên bộ đó, bổ sung kết quả vào phần Monitoring của blueprint | Commit của thành viên; `artifacts/extra/` (đang thực hiện) |
 
-Người tích hợp/chạy batch/nộp link: Võ Doanh Nhân — chạy `setup_answers.py --live`, runner A/B/C `--live`,
+Người tích hợp/chạy batch/nộp link: Võ Doanh Nhân (trưởng nhóm) — chạy `setup_answers.py --live`, runner A/B/C `--live`,
 `check_lab.py --with-tests`, push repo và nộp link; bằng chứng là bốn artifact có `run_kind=live` và commit trên.
 
 ## Môi trường và chuẩn bị trước lớp
@@ -83,7 +87,26 @@ gpt-4.1-mini), không chỉ dựa trên unit test.
   bottom-10, đọc log prompt/completion của NeMo, mọi số trong báo cáo lấy từ artifact của lần chạy thật (bảng
   bottom-10, cặp A/B và nhãn nhị phân được chèn bằng script từ JSON). Không dùng AI để tạo số đo hay nhãn.
 
+### LeDucHung-2A202602849
+
+- Phần được giao và phần thực tế đã làm: được giao kiểm chứng Phase A/B (xem `doc/PHAN_CONG.md`, mục Lê Đức Hùng); trạng thái: đang thực hiện.
+- Bằng chứng: thành viên tự điền sau khi làm (commit SHA, file trong `artifacts/extra/`, đoạn báo cáo đã sửa).
+- Cách kiểm tra: thành viên tự điền (lệnh đã chạy và kết quả thật).
+- Điều đã học: thành viên tự điền.
+- Giới hạn/cách xử lý: thành viên tự điền.
+- Nguồn/AI hỗ trợ nếu có: thành viên tự điền.
+
+### DaoDucHai-2A202602752
+
+- Phần được giao và phần thực tế đã làm: được giao mở rộng Phase C bằng bộ held-out (xem `doc/PHAN_CONG.md`, mục Đào Đức Hải); trạng thái: đang thực hiện.
+- Bằng chứng: thành viên tự điền sau khi làm (commit SHA, file trong `artifacts/extra/`, đoạn báo cáo đã sửa).
+- Cách kiểm tra: thành viên tự điền (lệnh đã chạy và kết quả thật).
+- Điều đã học: thành viên tự điền.
+- Giới hạn/cách xử lý: thành viên tự điền.
+- Nguồn/AI hỗ trợ nếu có: thành viên tự điền.
+
 ## Cập nhật sau khi nộp
 
-Phiên bản nộp là commit ghi ở đầu file; các commit sau đó trên nhánh main chỉ sửa file này (ghi SHA và hạn nộp). Chưa có cập
-nhật sau khi nộp.
+Lần nộp đầu: 12/10/2026 17:07 (mã BN-261012-40595), khi bài còn làm một người theo Track 3A, commit 7a0f68b. Sau đó lớp
+chuyển sang Track 3B làm nhóm: repo được cập nhật tiêu đề theo starter 3B (code, tests, fixtures, rubric không đổi), thêm
+hai thành viên và phần việc của họ. Trưởng nhóm ghi SHA cuối cùng ở đầu file và nộp lại link trước hạn 13/10/2026 11:59.

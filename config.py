@@ -1,4 +1,4 @@
-"""Shared configuration for K4 / Track 3A: Eval + Guardrail Stack."""
+"""Shared configuration for K4 / Track 3B: Eval + Guardrail Stack."""
 
 import os
 from dotenv import load_dotenv

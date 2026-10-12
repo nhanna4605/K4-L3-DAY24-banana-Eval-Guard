@@ -119,7 +119,7 @@ def main(argv=None):
     if not args.live:
         parser.error("Generation/enrichment may call APIs. Pass --live after completing pre-class setup.")
     print("=" * 60)
-    print("K4 / TRACK 3A SETUP — Generating answers for 50 questions")
+    print("K4 / TRACK 3B SETUP — Generating answers for 50 questions")
     print("=" * 60)
 
     if not check_day18_files():
