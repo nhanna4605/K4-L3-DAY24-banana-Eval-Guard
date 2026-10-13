@@ -8,7 +8,7 @@ Trưởng nhóm/người nộp: Võ Doanh Nhân — 2A202602770
 
 Ngày lab/deadline áp dụng: lab ngày 2026-10-12; hạn nộp 13/10/2026 11:59 theo trang nộp bài VLearn — Asia/Ho_Chi_Minh (UTC+07:00)
 
-Commit dùng để chấm: bản kỹ thuật đã chạy live là 7a0f68bd01ab5611b8b95b2c09dc686fb8407f90; trưởng nhóm cập nhật SHA cuối cùng sau khi hai thành viên commit xong phần việc của mình.
+Commit dùng để chấm: 12384b6bf38e1e4b60c59df2adc90a3b8e64309e (bản đầy đủ của nhóm; commit sau đó chỉ ghi SHA này vào TEAM).
 
 Mỗi nhóm nộp một repo. Lớp chuyển sang Track 3B làm nhóm sau khi Võ Doanh Nhân đã hoàn thành phần kỹ thuật; hai thành viên
 còn lại nhận phần kiểm chứng và mở rộng ghi trong bảng dưới (hướng dẫn chi tiết: `doc/PHAN_CONG.md`). Mỗi người chỉ
