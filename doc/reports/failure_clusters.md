@@ -189,3 +189,12 @@ Các sửa đổi đã áp dụng vào báo cáo: (1) id 28 — đổi khẳng �
 context_precision 0.00 mâu thuẫn với context_recall 1.00; (2) id 34 — thời hạn 15 ngày là chunk chưa retrieve, không phải
 input đã có mà answer bỏ sót; (3) id 39 — bổ sung chunk "12 ký tự" chưa retrieve. Bảng bottom-10 chép từ artifact được giữ nguyên
 văn (chẩn đoán gốc của id 28, 34, 39, 31 vẫn nằm trong bảng và bị các dòng trên thay thế khi đọc).
+
+### Lần chạy RAGAS bổ sung (Võ Doanh Nhân — trưởng nhóm, chạy thay phần chưa có khóa API ở trên)
+
+Một lần `python scripts/run_experiments.py --phase a --live` trên cùng `answers_50q.json`, lúc 2026-10-12T18:44:01Z,
+lưu tại `artifacts/extra/ragas_run_leader_1.json` (file chính `artifacts/ragas_50q.json` được khôi phục về bản gốc).
+Mean: factual 0.889, multi_hop 0.678, adversarial 0.825. Thứ tự multi_hop < adversarial < factual giữ nguyên ở cả 6 lần.
+Multi_hop của lần này thấp hơn dải 5 lần trước, nên dải dao động thực tế của multi_hop là 0.678–0.701 (factual 0.869–0.889,
+adversarial 0.815–0.834). Bottom-10 của lần này gồm 33, 31, 22, 28, 27, 21, 34, 35, 50, 45: 9/10 trùng nhóm câu đã phân tích,
+id 50 thay id 39. Lần chạy thứ hai bị ngắt giữa chừng (Docker dừng) nên không có kết quả và không được tính.

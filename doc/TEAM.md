@@ -18,9 +18,9 @@ khai phần mình thực sự làm.
 
 | STT | Họ và tên | MSSV | Vai trò / công việc thật | Bằng chứng |
 |---|---|---|---|---|
-| 1 | Võ Doanh Nhân | 2A202602770 | Toàn bộ bài: lắp m1–m5 từ Day 18 và sửa m2/m4; Phase A Tasks 1–4 (`src/phase_a_ragas.py`); Phase B Tasks 5–8 (`src/phase_b_judge.py`); Phase C Tasks 9a–12 (`src/phase_c_guard.py`, policy prompt `guardrails/config.yml`); chạy setup và ba runner live; ba báo cáo | Lịch sử commit của repo; `artifacts/*.json`; `doc/reports/*.md` |
-| 2 | Lê Đức Hùng | 2A202602849 | Kiểm chứng Phase A/B: chạy lại tests và `check_lab.py --with-tests` trên máy mình; chạy thêm 2 lần RAGAS để đo dao động; đọc lại bottom-10, bảng judge và sửa báo cáo nếu phát hiện sai | Commit của thành viên; `artifacts/extra/` (đang thực hiện) |
-| 3 | Đào Đức Hải | 2A202602752 | Mở rộng Phase C: bộ held-out ≥10 attacks + ≥5 câu hợp lệ mới (chưa dùng để chỉnh policy), chạy guard trên bộ đó, bổ sung kết quả vào phần Monitoring của blueprint | Commit của thành viên; `artifacts/extra/` |
+| 1 | Võ Doanh Nhân | 2A202602770 | Toàn bộ bài: lắp m1–m5 từ Day 18 và sửa m2/m4; Phase A Tasks 1–4 (`src/phase_a_ragas.py`); Phase B Tasks 5–8 (`src/phase_b_judge.py`); Phase C Tasks 9a–12 (`src/phase_c_guard.py`, policy prompt `guardrails/config.yml`); chạy setup và ba runner live; ba báo cáo; tích hợp, rà soát phần của hai thành viên và chạy bổ sung một lần RAGAS (`artifacts/extra/ragas_run_leader_1.json`) | Lịch sử commit của repo; `artifacts/*.json`; `doc/reports/*.md` |
+| 2 | Lê Đức Hùng | 2A202602849 | Kiểm chứng Phase A/B: chạy lại tests và `check_lab.py --with-tests` trên máy mình; chạy thêm 2 lần RAGAS để đo dao động; đọc lại bottom-10, bảng judge và sửa báo cáo nếu phát hiện sai (hai lần RAGAS chưa chạy được vì không có khóa API; trưởng nhóm chạy bổ sung một lần) | Commit cb9155d; `artifacts/extra/phase_ab_verification_hung.md` và log |
+| 3 | Đào Đức Hải | 2A202602752 | Mở rộng Phase C: bộ held-out ≥10 attacks + ≥5 câu hợp lệ mới (chưa dùng để chỉnh policy), chạy guard trên bộ đó, bổ sung kết quả vào phần Monitoring của blueprint | Commit 5694dcb; `artifacts/extra/heldout_guard_*.json`, `scripts/run_heldout_guard.py` |
 
 Người tích hợp/chạy batch/nộp link: Võ Doanh Nhân (trưởng nhóm) — chạy `setup_answers.py --live`, runner A/B/C `--live`,
 `check_lab.py --with-tests`, push repo và nộp link; bằng chứng là bốn artifact có `run_kind=live` và commit trên.
@@ -133,4 +133,5 @@ gpt-4.1-mini), không chỉ dựa trên unit test.
 Lần nộp đầu: 12/10/2026 17:07 (mã BN-261012-40595), khi bài còn làm một người theo Track 3A, commit 7a0f68b. Sau đó lớp
 chuyển sang Track 3B làm nhóm: repo được cập nhật tiêu đề theo starter 3B (code, tests, fixtures, rubric không đổi), thêm
 hai thành viên và phần việc của họ; nhóm đặt tên banana và repo được đổi tên thành
-K4-L3-DAY24-banana-Eval-Guard. Trưởng nhóm ghi SHA cuối cùng ở đầu file và nộp lại link trước hạn 13/10/2026 11:59.
+K4-L3-DAY24-banana-Eval-Guard. Hai thành viên commit phần của mình (cb9155d, 5694dcb); trưởng nhóm rà soát, chạy bổ sung một lần RAGAS, sửa
+một nhận xét nói quá trong blueprint, ghi SHA cuối ở đầu file và nộp lại link mới trước hạn 13/10/2026 11:59.
